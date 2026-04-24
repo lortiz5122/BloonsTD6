@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Monkey Meadow — BTD6 Recreation</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+  <div id="stage">
+    <canvas id="game" width="1280" height="720"></canvas>
+
+    <!-- Tutorial Overlay -->
+    <div id="tutorial" class="overlay">
+      <div class="tutorial-card">
+        <h1>MONKEY MEADOW</h1>
+        <h2>How to Play</h2>
+        <ol class="tutorial-steps">
+          <li><b>Goal:</b> Stop the Bloons from reaching the end of the path by placing monkey towers.</li>
+          <li><b>Select a tower</b> from the right sidebar (or press <kbd>Q</kbd> / <kbd>W</kbd> / <kbd>E</kbd>) — the card lights up gold.</li>
+          <li><b>Place it</b> by <b>clicking an empty grass area on the map</b>. Green ring = valid, red ring = blocked. Only <i>then</i> is cash spent. Right-click / <kbd>Esc</kbd> to cancel.</li>
+          <li><b>Towers shoot automatically!</b> You don't aim or click to fire — any Bloon that enters a tower's range gets popped. Click a placed tower to change its targeting priority.</li>
+          <li><b>Start the round:</b> Press <kbd>Space</kbd> or click <b>Start Round</b>. Earn $1 per pop + an end-of-round bonus.</li>
+          <li><b>Speed up time:</b> Press <kbd>Tab</kbd> or click the <b>1× / 2×</b> button.</li>
+          <li><b>Bandana styles:</b> Select a placed Dart Monkey to cycle its bandana color — Red, Green, Blue, Purple.</li>
+          <li><b>Survive all 20 rounds</b> — the final round is a M.O.A.B. Good luck, monkey commander!</li>
+        </ol>
+        <div class="tutorial-hint">Press <kbd>Space</kbd> or <kbd>Esc</kbd> or click <b>Start Playing</b> to skip</div>
+        <button id="tutorialStart" class="btn btn-primary">Start Playing</button>
+      </div>
+    </div>
+
+    <!-- End Screen Overlay -->
+    <div id="endScreen" class="overlay hidden">
+      <div class="end-card">
+        <h1 id="endTitle">GAME OVER</h1>
+        <p id="endSubtitle">Survived to Round X</p>
+        <button id="endButton" class="btn btn-primary">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <aside id="sidebar">
+    <div class="hud-title">MONKEY MEADOW</div>
+
+    <div class="hud-row">
+      <div class="hud-stat lives">
+        <span class="icon">&#x2665;</span>
+        <span id="livesValue">150</span>
+      </div>
+      <div class="hud-stat cash" id="cashStat">
+        <span class="icon">$</span>
+        <span id="cashValue">500</span>
+      </div>
+    </div>
+
+    <div class="hud-round">Round <span id="roundValue">0</span> / 20</div>
+
+    <div class="hud-controls">
+      <button id="startBtn" class="btn btn-green">Start Round (Space)</button>
+      <button id="speedBtn" class="btn btn-blue">1&times; (Tab)</button>
+    </div>
+
+    <div class="section-label">Towers</div>
+    <div class="tower-cards">
+      <div class="tower-card" data-tower="dart">
+        <div class="tower-icon dart-icon"></div>
+        <div class="tower-info">
+          <div class="tower-name">Dart Monkey</div>
+          <div class="tower-cost">$200</div>
+          <div class="tower-hotkey">Q</div>
+        </div>
+      </div>
+      <div class="tower-card" data-tower="tack">
+        <div class="tower-icon tack-icon"></div>
+        <div class="tower-info">
+          <div class="tower-name">Tack Shooter</div>
+          <div class="tower-cost">$360</div>
+          <div class="tower-hotkey">W</div>
+        </div>
+      </div>
+      <div class="tower-card" data-tower="bomb">
+        <div class="tower-icon bomb-icon"></div>
+        <div class="tower-info">
+          <div class="tower-name">Bomb Shooter</div>
+          <div class="tower-cost">$650</div>
+          <div class="tower-hotkey">E</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="selectedPanel" class="selected-panel hidden">
+      <div class="section-label">Selected Tower</div>
+      <div id="selName" class="sel-name">—</div>
+      <div class="sel-stats">
+        <div>Pops: <span id="selPops">0</span></div>
+        <div>Range: <span id="selRange">0</span></div>
+      </div>
+      <button id="targetBtn" class="btn btn-dark">Targeting: First</button>
+      <button id="styleBtn" class="btn btn-dark hidden">Bandana: Red</button>
+      <button id="sellBtn" class="btn btn-red">Sell</button>
+    </div>
+
+    <div class="help-box">
+      <div class="section-label">Quick Help</div>
+      <div class="help-line"><kbd>Q</kbd>/<kbd>W</kbd>/<kbd>E</kbd> Buy tower</div>
+      <div class="help-line"><kbd>Space</kbd> Start round</div>
+      <div class="help-line"><kbd>Tab</kbd> Speed toggle</div>
+      <div class="help-line"><kbd>Esc</kbd> Cancel / deselect</div>
+      <div class="help-line">Right-click Cancel placement</div>
+    </div>
+  </aside>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
